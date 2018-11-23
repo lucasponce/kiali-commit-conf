@@ -23,15 +23,25 @@ spec:
   - match:
     - headers:
         region:
-          exact: spain
-    fault:
-      abort:
-        percent: 100
-        httpStatus: 500
+          exact: region1
+    route:
+    - destination:
+        host: productpage
+        subset: v1
+      weight: 20
+    - destination:
+        host: productpage
+        subset: v2
+      weight: 30
+  - match:
+    - headers:
+        region:
+          exact: region2
     route:
     - destination:
         host: productpage
         subset: v2
-    - destination:
-        host: productpage
-        subset: v1
+    fault:
+      abort:
+        httpStatus: 500
+        percent: 100
