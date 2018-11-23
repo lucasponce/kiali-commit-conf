@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: users-region1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: users-region1
+        version: v1
+    spec:
+      containers:
+      - name: users
+        image: lucasponce/kiali-commit-conf:dev
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+        env:
+        - name: REGION
+          value: "region: region1"
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: users-region2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: users-region2
+        version: v1
+    spec:
+      containers:
+      - name: users
+        image: lucasponce/kiali-commit-conf:dev
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+        env:
+        - name: REGION
+          value: "region: region2"
+---
+
