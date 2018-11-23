@@ -28,11 +28,6 @@ spec:
     - destination:
         host: productpage
         subset: v1
-      weight: 20
-    - destination:
-        host: productpage
-        subset: v2
-      weight: 30
   - match:
     - headers:
         region:
