@@ -12,41 +12,6 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-##################################################################################################
-# Ratings service
-##################################################################################################
-apiVersion: v1
-kind: Service
-metadata:
-  name: ratings
-  labels:
-    app: ratings
-spec:
-  ports:
-  - port: 9080
-    name: http
-  selector:
-    app: ratings
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: ratings-v1
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: ratings
-        version: v1
-    spec:
-      containers:
-      - name: ratings
-        image: istio/examples-bookinfo-ratings-v1:1.8.0
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9080
----
 
 ##################################################################################################
 # Reviews service
@@ -54,18 +19,18 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: reviews-v2
+  name: reviews-v3
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: reviews
-        version: v2
+        version: v3
     spec:
       containers:
       - name: reviews
-        image: istio/examples-bookinfo-reviews-v2:1.8.0
+        image: istio/examples-bookinfo-reviews-v3:1.8.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
