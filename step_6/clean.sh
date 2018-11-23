@@ -16,16 +16,14 @@
 
 SCRIPTDIR=./destination-rule-header.yaml
 
-ISTIO_PATH="../../istio-1.0.3"
-
 NAMESPACE=bookinfo
 
 echo "using NAMESPACE=${NAMESPACE}"
 
 protos=( destinationrules virtualservices gateways )
 for proto in "${protos[@]}"; do
-  for resource in $($ISTIO_PATH/bin/istioctl get -n ${NAMESPACE} $proto | awk 'NR>1{print $1}'); do
-    $ISTIO_PATH/bin/istioctl delete -n ${NAMESPACE} $proto $resource;
+  for resource in $(istioctl get -n ${NAMESPACE} $proto | awk 'NR>1{print $1}'); do
+    istioctl delete -n ${NAMESPACE} $proto $resource;
   done
 done
 #$ISTIO_PATH/bin/istioctl delete mixer-rule ratings-ratelimit

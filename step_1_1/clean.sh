@@ -14,9 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-SCRIPTDIR=./productpage-v2.yaml
-
-ISTIO_PATH="../../istio-1.0.3"
+SCRIPTDIR=./generators.yaml
 
 NAMESPACE=bookinfo
 
@@ -28,12 +26,10 @@ for proto in "${protos[@]}"; do
     istioctl delete -n ${NAMESPACE} $proto $resource;
   done
 done
-#$ISTIO_PATH/bin/istioctl delete mixer-rule ratings-ratelimit
 
 export OUTPUT=$(mktemp)
 echo "Application cleanup may take up to one minute"
 kubectl delete -n ${NAMESPACE} -f $SCRIPTDIR > ${OUTPUT} 2>&1
-
 ret=$?
 function cleanup() {
   rm -f ${OUTPUT}
@@ -51,5 +47,7 @@ else
     exit ${ret}
   fi
 fi
+
+oc delete route productpage
 
 echo "Application cleanup successful"
