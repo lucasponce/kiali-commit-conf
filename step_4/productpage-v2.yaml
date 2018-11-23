@@ -13,23 +13,23 @@
 #   limitations under the License.
 
 ##################################################################################################
-# Reviews service
+# Productpage services
 ##################################################################################################
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: reviews-v2
+  name: productpage-v2
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: reviews
+        app: productpage
         version: v2
     spec:
       containers:
-      - name: reviews
-        image: istio/examples-bookinfo-reviews-v1:1.8.0
+      - name: productpage
+        image: istio/examples-bookinfo-productpage-v1:1.8.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080

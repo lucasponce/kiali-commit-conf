@@ -14,7 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-SCRIPTDIR=./ratings.yaml
+SCRIPTDIR=./productpage-v2.yaml
 
 ISTIO_PATH="../../istio-1.0.3"
 
@@ -33,6 +33,7 @@ done
 export OUTPUT=$(mktemp)
 echo "Application cleanup may take up to one minute"
 kubectl delete -n ${NAMESPACE} -f $SCRIPTDIR > ${OUTPUT} 2>&1
+
 ret=$?
 function cleanup() {
   rm -f ${OUTPUT}

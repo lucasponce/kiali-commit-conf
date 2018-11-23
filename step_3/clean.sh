@@ -14,8 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-SCRIPTDIR=./virtual-service-reviews-10-90.yaml
-
+SCRIPTDIR=./reviewsv3.yaml
 
 ISTIO_PATH="../../istio-1.0.3"
 
