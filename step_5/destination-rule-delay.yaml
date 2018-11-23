@@ -20,16 +20,23 @@ spec:
   hosts:
   - productpage
   http:
-  - fault:
-      delay:
-        percent: 100
-        fixedDelay: 47s
+  - match:
+    - headers:
+        region:
+          exact: region1
     route:
     - destination:
         host: productpage
-        subset: v2
-    timeout: 4.5s
-  - route:
+        subset: v1       
+  - match:
+    - headers:
+        region:
+          exact: region2
+    route:
     - destination:
         host: productpage
-        subset: v1
+        subset: v2       
+    fault:
+      delay:
+        fixedDelay: 7s
+        percent: 100
