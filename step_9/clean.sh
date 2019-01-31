@@ -14,11 +14,11 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-SCRIPTDIR=./destination-rule-delay.yaml
+SCRIPTDIR=./bookinfo-gateway.yaml
 
 ISTIO_PATH="../../istio-1.0.3"
 
-NAMESPACE=default
+NAMESPACE=bookinfo
 
 echo "using NAMESPACE=${NAMESPACE}"
 
