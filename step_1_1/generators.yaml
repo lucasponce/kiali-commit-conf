@@ -6,6 +6,8 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        readiness.status.sidecar.istio.io/applicationPorts: ""    
       labels:
         app: users-region1
         version: v1
@@ -28,6 +30,8 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        readiness.status.sidecar.istio.io/applicationPorts: ""    
       labels:
         app: users-region2
         version: v1
